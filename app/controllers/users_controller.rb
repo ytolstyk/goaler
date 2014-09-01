@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @goals = @user.goals.order(:deadline)
+    @public_goals = @user.goals.where(private: true)
     @goal = Goal.new
   end
   

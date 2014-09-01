@@ -33,8 +33,10 @@
   <button>Add goal</button>
 </form>
 
+<% goals = (current_user == @user ? @goals : @public_goals) %>
+
 <ol>
-  <% @goals.each do |goal| %>
+  <% goals.each do |goal| %>
     <li>
       <%= link_to goal.title, goal_url(goal) %>
       (<%= goal.deadline %>)
