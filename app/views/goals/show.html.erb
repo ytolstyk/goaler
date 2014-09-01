@@ -1,0 +1,11 @@
+<h1><%= @goal.title %> (<%= @goal.user.username %>)</h1>
+
+<p><%= @goal.body %></p>
+
+<p>Deadline: <%= @goal.deadline %></p>
+
+<p>Private? <%= @goal.private ? "Yes" : "No" %></p>
+
+<% if current_user = @goal.user %>
+  <%= link_to "Edit goal", edit_goal_url(@goal) %>
+<% end %>

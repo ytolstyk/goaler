@@ -1,0 +1,44 @@
+<h1><%= @user.username %></h1>
+
+<h3>New goal</h3>
+<form action="<%= goals_url %>", method="POST">
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+         
+  <label>
+    Title
+    <input type="text" name="goal[title]" value="<%= @goal.title %>">
+  </label>
+  
+  <label>
+    Body
+    <textarea name="goal[body]"><%= @goal.body %></textarea>
+  </label>
+  
+  <label>
+    Deadline
+    <input type="date" name="goal[deadline]" value="<%= @goal.deadline %>">
+  </label>
+  
+  <label>
+    Public
+    <input type="radio" name="goal[private]" value="false">
+  </label>
+  
+  <label>
+    Private
+    <input type="radio" name="goal[private]" value="true">
+  </label>
+  
+  <button>Add goal</button>
+</form>
+
+<ol>
+  <% @goals.each do |goal| %>
+    <li>
+      <%= link_to goal.title, goal_url(goal) %>
+      (<%= goal.deadline %>)
+      <%= button_to "Delete", goals_url, method: :delete %>
+    </li>
+  <% end %>
+</ol>
